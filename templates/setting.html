@@ -1,0 +1,99 @@
+<style>
+</style>
+<div class="layuimini-container layuimini-page-anim">
+    <div class="layuimini-main">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>配置文件编辑</legend>
+        </fieldset>
+        <div class="layui-form layuimini-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label required">source_domain</label>
+                <div class="layui-input-inline " style="width: 400px;">
+                    <input type="text" name="source_domain" lay-verify="required" lay-reqtext="不能为空" placeholder=""  value="{{ setting.source_domain }}" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">来源git库的域名或IP，比如:gitlab_source.example.com</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label required">source_token</label>
+                <div class="layui-input-inline " style="width: 400px;">
+                    <input type="text" name="source_token" lay-verify="required" lay-reqtext="不能为空" placeholder=""  value="{{ setting.source_token }}" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">来源gitlab库的private token</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label required">source_protocol</label>
+                <div class="layui-input-inline " style="width: 400px;">
+                    <input type="text" name="source_protocol" lay-verify="required" lay-reqtext="不能为空" placeholder=""  value="{{ setting.source_protocol }}" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">来源协议比如http或者ssh</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label required">target_domain</label>
+                <div class="layui-input-inline " style="width: 400px;">
+                    <input type="text" name="target_domain" lay-verify="required" lay-reqtext="不能为空" placeholder=""  value="{{ setting.target_domain }}" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">目标git库的域名或IP，比如:gitlab_target.example.com</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label required">target_token</label>
+                <div class="layui-input-inline " style="width: 400px;">
+                    <input type="text" name="target_token" lay-verify="required" lay-reqtext="不能为空" placeholder=""  value="{{ setting.target_token }}" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">目标gitlab库的private token</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label required">target_protocol</label>
+                <div class="layui-input-inline " style="width: 400px;">
+                    <input type="text" name="target_protocol" lay-verify="required" lay-reqtext="不能为空" placeholder=""  value="{{ setting.target_protocol }}" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">目标协议比如http或者ssh。</div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label required">项目白名单</label>
+                <div class="layui-input-inline" style="width: 900px">
+                    <textarea name="project_list" rows="10" class="layui-textarea" placeholder="多个项目以换行分割">
+{% for it in project_list %}{{ it }}
+{% endfor %}</textarea>
+                </div>
+                <div class="layui-form-mid layui-word-aux">目标协议比如http或者ssh。</div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn layui-btn-normal" lay-submit lay-filter="setting">确认保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use(['form'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , miniPage = layui.miniPage;
+
+        /**
+         * 初始化表单，要加上，不然刷新部分组件可能会不加载
+         */
+        form.render();
+
+        //监听提交
+        form.on('submit(setting)', function (data) {
+
+           parent.layer.open({
+              title: '在线调试',
+               content: '配置各种参数，试试效果'
+              //   yes: function(index, layero){
+              //   miniPage.refresh({});
+              //   // layer.close(index); //如果设定了yes回调，需进行手工关闭
+              // },
+            // parent.layer.alert(JSON.stringify(data.field), {
+            //     title: '最终的提交信息'
+            // });
+            // miniPage.refresh({});
+            // return false;
+        });
+    });
+});
+
+</script>

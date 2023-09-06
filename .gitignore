@@ -1,0 +1,6 @@
+venv3.7
+/.idea/
+/logs/
+/config-local.yml
+
+com/__pycache__/

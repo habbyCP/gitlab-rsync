@@ -1,0 +1,14 @@
+source_domain: *
+source_token: *
+source_protocol: http
+target_domain: *
+target_protocol: http
+target_token: *
+target_api_token: *
+project_list:
+  - demo
+webhook_token: *
+webhook_port: 6000
+repo_base_path: ./repo/
+log_path: ./logs
+lock_path: /lock
